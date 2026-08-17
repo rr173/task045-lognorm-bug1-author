@@ -213,7 +213,7 @@ func (s *Service) Query(q Query) []*Record {
 		minOrd, hasMin = levelOrder[q.MinLevel]
 	}
 
-	var out []*Record
+	out := make([]*Record, 0, len(s.records))
 	for _, r := range s.records {
 		if hasMin && levelOrder[r.Level] < minOrd {
 			continue
